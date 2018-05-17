@@ -1,6 +1,7 @@
 package metier;
 
 public class AssoEtapeRecette {
+<<<<<<< HEAD
 	private int id, idRecette, idEtape;
 
 	public AssoEtapeRecette(int id, int idRecette, int idEtape) {
@@ -35,4 +36,7 @@ public class AssoEtapeRecette {
 	}
 	
 	
+=======
+
+>>>>>>> branch 'master' of https://github.com/ieiko/livre_de_cuisine
 }

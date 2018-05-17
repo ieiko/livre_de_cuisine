@@ -1,6 +1,7 @@
 package metier;
 
 public class Ingredient {
+<<<<<<< HEAD
 	private int id;
 	private String name;
 	private String body;
@@ -33,5 +34,7 @@ public class Ingredient {
 	
 	
 	
+=======
+>>>>>>> branch 'master' of https://github.com/ieiko/livre_de_cuisine
 
 }
