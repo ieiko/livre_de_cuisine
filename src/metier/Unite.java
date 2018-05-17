@@ -2,7 +2,7 @@ package metier;
 
 public enum Unite {
 
-	mG("milligramme"), mL("millilitre"), Oz("Oz"), NC("");
+	mG("milligramme"), G("gramme"), mL("millilitre"), L("litre"), Oz("Oz"), NC("");
 	
 	private String libelle;
 	
