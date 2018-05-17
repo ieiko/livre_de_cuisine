@@ -33,6 +33,7 @@ public class Frame extends JFrame {
 	{
 		System.out.println(height);
 		System.out.println(width);
+		System.out.println("gr");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, width, height);
 		contentPane = new JPanel();
