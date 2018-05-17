@@ -3,13 +3,13 @@ package metier;
 public class Ingredient {
 	private int id;
 	private String name;
-	private String body;
+	private String image;
 	
 	public Ingredient(int id, String name, String body) {
 		super();
 		this.id = id;
 		this.name = name;
-		this.body = body;
+		this.image = image;
 	}
 	
 	public int getId() {
@@ -24,10 +24,10 @@ public class Ingredient {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getBody() {
-		return body;
+	public String getImage() {
+		return image;
 	}
-	public void setBody(String body) {
-		this.body = body;
+	public void setImage(String image) {
+		this.image = image;
 	}
 }
