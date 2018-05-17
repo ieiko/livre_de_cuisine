@@ -1,7 +1,6 @@
 package metier;
 
 public class Recette {
-<<<<<<< HEAD
 	private int id;
 	private String name, resume;
 	
@@ -30,9 +29,5 @@ public class Recette {
 		this.resume = resume;
 	}
 	
-	
-	
-=======
->>>>>>> branch 'master' of https://github.com/ieiko/livre_de_cuisine
 
 }

@@ -1,7 +1,7 @@
 package metier;
 
 public class AssoIngredientRecette {
-<<<<<<< HEAD
+
 	private int id, idIngredient, idRecette;
 
 	public AssoIngredientRecette(int id, int idIngredient, int idRecette) {
@@ -34,8 +34,5 @@ public class AssoIngredientRecette {
 	public void setIdRecette(int idRecette) {
 		this.idRecette = idRecette;
 	}
-
-=======
->>>>>>> branch 'master' of https://github.com/ieiko/livre_de_cuisine
 
 }

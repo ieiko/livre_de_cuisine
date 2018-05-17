@@ -2,7 +2,6 @@ package metier;
 
 public class Etape {
 
-<<<<<<< HEAD
 	private int id;
 	private String name, body;
 	
@@ -37,6 +36,4 @@ public class Etape {
 		this.body = body;
 	}
 	
-=======
->>>>>>> branch 'master' of https://github.com/ieiko/livre_de_cuisine
 }

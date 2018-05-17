@@ -1,7 +1,6 @@
 package metier;
 
 public class Ingredient {
-<<<<<<< HEAD
 	private int id;
 	private String name;
 	private String body;
@@ -31,10 +30,4 @@ public class Ingredient {
 	public void setBody(String body) {
 		this.body = body;
 	}
-	
-	
-	
-=======
->>>>>>> branch 'master' of https://github.com/ieiko/livre_de_cuisine
-
 }
