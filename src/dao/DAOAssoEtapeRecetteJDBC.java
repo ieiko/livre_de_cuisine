@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Properties;
 
 import metier.AssoEtapeRecette;
+import metier.AssoIngredientRecette;
 import metier.Recette;
 import metier.Type;
 
@@ -25,8 +26,9 @@ public class DAOAssoEtapeRecetteJDBC implements DAOAssoEtapeRecette {
 		return DriverManager.getConnection("jdbc:mysql://localhost:3306/recettes?serverTimezone=UTC", pt);
 	}
 	
-	@Override
+	
 	public AssoEtapeRecette selectById(Integer id) throws SQLException, ClassNotFoundException {
+		
 		Connection conn = this.connect();
 		AssoEtapeRecette asso = null;
 		
@@ -35,48 +37,92 @@ public class DAOAssoEtapeRecetteJDBC implements DAOAssoEtapeRecette {
 		
 		ResultSet rs = ps.executeQuery();
 		while (rs.next()) {
-			asso = new AssoEtapeRecette(rs.getInt("id_asso_etapes_recettes"), rs.getInt("id_recette"), rs.getInt("id_etape"));
+			asso = new AssoEtapeRecette(rs.getInt("id_asso_etapes_recettes"), rs.getInt("id_etape"), rs.getInt("id_recette"));
 		}
 		
 		return asso;
 	}
 
-	@Override
+
 	public List<AssoEtapeRecette> selectAll() throws SQLException, ClassNotFoundException {
+		
 		Connection conn = this.connect();
 		
-		ArrayList<AssoEtapeRecette> assoRecettes = new ArrayList<AssoEtapeRecette>();
+		ArrayList<AssoEtapeRecette> listeAssoEtapeRecettes = new ArrayList<AssoEtapeRecette>();
 		PreparedStatement ps= conn.prepareStatement("select * from asso_etapes_recettes");
 		ResultSet rs = ps.executeQuery();
 		while (rs.next()) {
-			assoRecettes.add(new AssoEtapeRecette(rs.getInt("id_asso_etapes_recettes"), rs.getInt("id_recette"), rs.getInt("id_etape")));
+			listeAssoEtapeRecettes.add(new AssoEtapeRecette(rs.getInt("id_asso_etapes_recettes"), rs.getInt("id_etape"), rs.getInt("id_recette")));
 		}
 		
 		conn.close();
-		return assoRecettes;
+		return listeAssoEtapeRecettes;
 	}
 
-	@Override
+	
 	public void insert(AssoEtapeRecette obj) throws ClassNotFoundException, SQLException {
 
+		Connection conn = this.connect();
+
+		PreparedStatement ps = conn.prepareStatement("insert into asso_etapes_recettes (id_asso_etapes_recettes, id_etape, id_recette) values (?, ?, ?)");
+		ps.setInt(1, obj.getId());
+		ps.setInt(3, obj.getIdEtape());
+		ps.setInt(2, obj.getIdRecette());
+		
+		ps.executeUpdate();
+		ps.close();
+		conn.close();
 	}
 
-	@Override
+	
 	public void update(AssoEtapeRecette obj) throws ClassNotFoundException, SQLException {
-		// TODO Auto-generated method stub
 
+		Connection conn = this.connect();
+
+		PreparedStatement ps = conn.prepareStatement("update into asso_etapes_recettes set id_etape = ?, id_recette = ?,"
+				+ " where id_asso_etapes_recettes = ?)");
+		ps.setInt(1, obj.getIdEtape());
+		ps.setInt(2, obj.getIdRecette());
+		ps.setInt(3, obj.getId());
+		
+		ps.executeUpdate();
+		ps.close();
+		conn.close();
 	}
 
-	@Override
+	
 	public void delete(AssoEtapeRecette obj) throws ClassNotFoundException, SQLException {
-		// TODO Auto-generated method stub
+	
+		Connection conn = this.connect();
 
+		PreparedStatement ps = conn.prepareStatement("delete * from asso_etapes_recettes where id_asso_etapes_recettes = ?");
+		ps.setInt(1, obj.getId());
+		ResultSet rs = ps.executeQuery();
+		
+		ps.close();
+		rs.close();
+		conn.close();
 	}
 
-	@Override
-	public ArrayList<AssoEtapeRecette> selectByRecette(int idRecette) {
-		// TODO Auto-generated method stub
-		return null;
+
+	public ArrayList<AssoEtapeRecette> selectByRecette(int idRecette) throws SQLException {
+		
+		Connection conn = this.connect();
+		
+		PreparedStatement ps = conn.prepareStatement("select * from asso_ingredients_recette where id_recette = ?");
+		ps.setInt(1, idRecette);
+		ArrayList <AssoEtapeRecette> listeAssoEtapeRecette = new ArrayList <AssoEtapeRecette>();
+		ResultSet rs = ps.executeQuery();
+		
+		while (rs.next()) {
+			listeAssoEtapeRecette.add(new AssoEtapeRecette (rs.getInt("id_asso_etapes_recettes"), rs.getInt("id_etape"), 
+					rs.getInt("id_recette")));
+		}
+		
+		ps.close();
+		rs.close();
+		conn.close();
+		return listeAssoEtapeRecette;
 	}
 
 }
