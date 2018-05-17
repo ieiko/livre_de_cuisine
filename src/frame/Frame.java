@@ -34,9 +34,9 @@ public class Frame extends JFrame {
 		System.out.println(height);
 		System.out.println(width);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(0, 0, height, width);
+		setBounds(0, 0, width, height);
 		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setBorder(new EmptyBorder(5,5,5,5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 	}
