@@ -2,13 +2,13 @@ package metier;
 
 public class AssoEtapeRecette {
 
-	private int id, idRecette, idEtape, ordre;
+	private int id, idEtape, idRecette, ordre;
 
-	public AssoEtapeRecette(int id, int idRecette, int idEtape, int ordre) {
+	public AssoEtapeRecette(int id, int idEtape, int idRecette, int ordre) {
 		super();
 		this.id = id;
-		this.idRecette = idRecette;
 		this.idEtape = idEtape;
+		this.idRecette = idRecette;
 		this.ordre = ordre;
 	}
 

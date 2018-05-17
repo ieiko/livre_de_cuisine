@@ -10,6 +10,7 @@ import java.util.Properties;
 
 import metier.AssoIngredientRecette;
 import metier.Ingredient;
+import metier.Unite;
 
 public class DAOAssoIngredientRecetteJDBC implements DAOAssoIngredientRecette {
 	
@@ -36,7 +37,7 @@ public class DAOAssoIngredientRecetteJDBC implements DAOAssoIngredientRecette {
 		
 		while (rs.next()) {
 			assoIngredientRecette = new AssoIngredientRecette(rs.getInt("id_asso_ingredients_recettes"), rs.getInt("id_ingredient"), 
-					rs.getInt("id_recette"), rs.getInt("quantite"));
+					rs.getInt("id_recette"), rs.getInt("quantite"), Unite.valueOf(rs.getString("unite")));
 		}
 		
 		ps.close();
@@ -56,7 +57,7 @@ public class DAOAssoIngredientRecetteJDBC implements DAOAssoIngredientRecette {
 		
 		while (rs.next()) {
 			listeAssoIngredientRecette.add(new AssoIngredientRecette (rs.getInt("id_asso_ingredients_recettes"), rs.getInt("id_ingredient"), 
-					rs.getInt("id_recette"), rs.getInt("quantite")));
+					rs.getInt("id_recette"), rs.getInt("quantite"), Unite.valueOf(rs.getString("unite"))));
 		}
 		
 		ps.close();
@@ -70,10 +71,11 @@ public class DAOAssoIngredientRecetteJDBC implements DAOAssoIngredientRecette {
 		
 		Connection conn = this.connec();
 
-		PreparedStatement ps = conn.prepareStatement("insert into asso_ingredients_recette (id_ingredient, id_recette, quantite) values (?, ?, ?)");
+		PreparedStatement ps = conn.prepareStatement("insert into asso_ingredients_recette (id_ingredient, id_recette, quantite, unite) values (?, ?, ?, ?)");
 		ps.setInt(1, obj.getIdIngredient());
 		ps.setInt(2, obj.getIdRecette());
 		ps.setInt(3, obj.getQuantite());
+		ps.setString(4, obj.getUnite().getLibelle());
 		
 		ps.executeUpdate();
 		ps.close();
@@ -86,11 +88,12 @@ public class DAOAssoIngredientRecetteJDBC implements DAOAssoIngredientRecette {
 		Connection conn = this.connec();
 
 		PreparedStatement ps = conn.prepareStatement("update asso_ingredients_recette set id_ingredient = ?, id_recette = ?,"
-				+ " quantite = ? where id_asso_ingredients_recettes = ?)");
+				+ " quantite = ?, unite = ? where id_asso_ingredients_recettes = ?)");
 		ps.setInt(1, obj.getIdIngredient());
 		ps.setInt(2, obj.getIdRecette());
 		ps.setInt(3, obj.getQuantite());
-		ps.setInt(4, obj.getId());
+		ps.setString(4, obj.getUnite().getLibelle());
+		ps.setInt(5, obj.getId());
 		
 		ps.executeUpdate();
 		ps.close();
@@ -123,7 +126,7 @@ public class DAOAssoIngredientRecetteJDBC implements DAOAssoIngredientRecette {
 		
 		while (rs.next()) {
 			listeAssoIngredientRecette.add(new AssoIngredientRecette (rs.getInt("id_asso_ingredients_recettes"), rs.getInt("id_ingredient"), 
-					rs.getInt("id_recette"), rs.getInt("quantite")));
+					rs.getInt("id_recette"), rs.getInt("quantite"), Unite.valueOf(rs.getString("unite"))));
 		}
 		
 		ps.close();

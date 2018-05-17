@@ -37,7 +37,7 @@ public class DAOAssoEtapeRecetteJDBC implements DAOAssoEtapeRecette {
 		
 		ResultSet rs = ps.executeQuery();
 		while (rs.next()) {
-			asso = new AssoEtapeRecette(rs.getInt("id_asso_etapes_recettes"), rs.getInt("id_etape"), rs.getInt("id_recette"));
+			asso = new AssoEtapeRecette(rs.getInt("id_asso_etapes_recettes"), rs.getInt("id_etape"), rs.getInt("id_recette"), rs.getInt("ordre"));
 		}
 		
 		return asso;
@@ -52,7 +52,8 @@ public class DAOAssoEtapeRecetteJDBC implements DAOAssoEtapeRecette {
 		PreparedStatement ps= conn.prepareStatement("select * from asso_etapes_recettes");
 		ResultSet rs = ps.executeQuery();
 		while (rs.next()) {
-			listeAssoEtapeRecettes.add(new AssoEtapeRecette(rs.getInt("id_asso_etapes_recettes"), rs.getInt("id_etape"), rs.getInt("id_recette")));
+			listeAssoEtapeRecettes.add(new AssoEtapeRecette(rs.getInt("id_asso_etapes_recettes"), rs.getInt("id_etape"), 
+					rs.getInt("id_recette"), rs.getInt("ordre")));
 		}
 		
 		conn.close();
@@ -64,10 +65,11 @@ public class DAOAssoEtapeRecetteJDBC implements DAOAssoEtapeRecette {
 
 		Connection conn = this.connect();
 
-		PreparedStatement ps = conn.prepareStatement("insert into asso_etapes_recettes (id_asso_etapes_recettes, id_etape, id_recette) values (?, ?, ?)");
+		PreparedStatement ps = conn.prepareStatement("insert into asso_etapes_recettes (id_asso_etapes_recettes, id_etape, id_recette, ordre) values (?, ?, ?, ?)");
 		ps.setInt(1, obj.getId());
 		ps.setInt(3, obj.getIdEtape());
 		ps.setInt(2, obj.getIdRecette());
+		ps.setInt(4, obj.getOrdre());
 		
 		ps.executeUpdate();
 		ps.close();
@@ -80,10 +82,11 @@ public class DAOAssoEtapeRecetteJDBC implements DAOAssoEtapeRecette {
 		Connection conn = this.connect();
 
 		PreparedStatement ps = conn.prepareStatement("update into asso_etapes_recettes set id_etape = ?, id_recette = ?,"
-				+ " where id_asso_etapes_recettes = ?)");
+				+ " ordre = ? where id_asso_etapes_recettes = ?)");
 		ps.setInt(1, obj.getIdEtape());
 		ps.setInt(2, obj.getIdRecette());
-		ps.setInt(3, obj.getId());
+		ps.setInt(3, obj.getOrdre());
+		ps.setInt(4, obj.getId());
 		
 		ps.executeUpdate();
 		ps.close();
@@ -116,7 +119,7 @@ public class DAOAssoEtapeRecetteJDBC implements DAOAssoEtapeRecette {
 		
 		while (rs.next()) {
 			listeAssoEtapeRecette.add(new AssoEtapeRecette (rs.getInt("id_asso_etapes_recettes"), rs.getInt("id_etape"), 
-					rs.getInt("id_recette")));
+					rs.getInt("id_recette"), rs.getInt("ordre")));
 		}
 		
 		ps.close();
