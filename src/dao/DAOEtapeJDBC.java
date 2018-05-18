@@ -16,7 +16,7 @@ public class DAOEtapeJDBC implements DAOEtape {
 		
 		Properties pt = new Properties();
 		pt.setProperty("user", "root");
-		pt.setProperty("password", "");
+		pt.setProperty("password", "ajcformation");
 		pt.setProperty("useSSL", "false");
 		pt.setProperty("autoReconnect", "true");
 

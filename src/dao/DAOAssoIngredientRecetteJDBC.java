@@ -18,7 +18,7 @@ public class DAOAssoIngredientRecetteJDBC implements DAOAssoIngredientRecette {
 		
 		Properties pt = new Properties();
 		pt.setProperty("user", "root");
-		pt.setProperty("password", "");
+		pt.setProperty("password", "ajcformation");
 		pt.setProperty("useSSL", "false");
 		pt.setProperty("autoReconnect", "true");
 
@@ -125,8 +125,13 @@ public class DAOAssoIngredientRecetteJDBC implements DAOAssoIngredientRecette {
 		ResultSet rs = ps.executeQuery();
 		
 		while (rs.next()) {
+			String unite = rs.getString("unite");
+	
+			if (unite == null) {
+				unite = "NC";
+			} 
 			listeAssoIngredientRecette.add(new AssoIngredientRecette (rs.getInt("id_asso_ingredients_recettes"), rs.getInt("id_ingredient"), 
-					rs.getInt("id_recette"), rs.getInt("quantite"), Unite.valueOf(rs.getString("unite"))));
+					rs.getInt("id_recette"), rs.getInt("quantite"), Unite.valueOf(unite)));
 		}
 		
 		ps.close();

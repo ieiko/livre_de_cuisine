@@ -5,7 +5,7 @@ public class Ingredient {
 	private String name;
 	private String image;
 	
-	public Ingredient(int id, String name, String body) {
+	public Ingredient(int id, String name, String image) {
 		super();
 		this.id = id;
 		this.name = name;

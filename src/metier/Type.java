@@ -2,7 +2,7 @@ package metier;
 
 public enum Type {
 	
-	Dessert("Dessert"), Plat("Plat"), Entree("Entrée"), Boisson("Boisson");
+	Dessert("Dessert"), Plat("Plat"), Entree("Entree"), Boisson("Boisson");
 	
 	private String libelle;
 	

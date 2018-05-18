@@ -15,7 +15,7 @@ public class DAOIngredientJDBC implements DAOIngredient {
 		
 		Properties pt = new Properties();
 		pt.setProperty("user", "root");
-		pt.setProperty("password", "");
+		pt.setProperty("password", "ajcformation");
 		pt.setProperty("useSSL", "false");
 		pt.setProperty("autoReconnect", "true");
 
@@ -27,7 +27,7 @@ public class DAOIngredientJDBC implements DAOIngredient {
 		
 		Connection conn = this.connec();
 
-		PreparedStatement ps = conn.prepareStatement("select * from ingredient where id_ing = ?");
+		PreparedStatement ps = conn.prepareStatement("select * from ingredients where id_ingredients = ?");
 		ps.setInt(1, id);
 		Ingredient ingredient = null;
 		ResultSet rs = ps.executeQuery();
@@ -47,7 +47,7 @@ public class DAOIngredientJDBC implements DAOIngredient {
 		
 		Connection conn = this.connec();
 		
-		PreparedStatement ps = conn.prepareStatement("select * from ingredient");
+		PreparedStatement ps = conn.prepareStatement("select * from ingredients");
 		ArrayList <Ingredient> listeIngredient = new ArrayList <Ingredient>();
 		ResultSet rs = ps.executeQuery();
 		
@@ -66,7 +66,7 @@ public class DAOIngredientJDBC implements DAOIngredient {
 		
 		Connection conn = this.connec();
 
-		PreparedStatement ps = conn.prepareStatement("insert into ingredient (name, image_path) values (?, ?)");
+		PreparedStatement ps = conn.prepareStatement("insert into ingredients (name, image_path) values (?, ?)");
 		ps.setString(1, obj.getName());
 		ps.setString(2, obj.getImage());
 		
@@ -81,7 +81,7 @@ public class DAOIngredientJDBC implements DAOIngredient {
 		
 		Connection conn = this.connec();
 
-		PreparedStatement ps = conn.prepareStatement("update ingredient set name = ?, image_path = ? where id_ingredients = ?)");
+		PreparedStatement ps = conn.prepareStatement("update ingredients set name = ?, image_path = ? where id_ingredients = ?)");
 		ps.setString(1, obj.getName());
 		ps.setString(2, obj.getImage());
 		ps.setInt(3, obj.getId());
@@ -97,7 +97,7 @@ public class DAOIngredientJDBC implements DAOIngredient {
 		
 		Connection conn = this.connec();
 
-		PreparedStatement ps = conn.prepareStatement("delete * from ingredient where id_ingredients = ?");
+		PreparedStatement ps = conn.prepareStatement("delete * from ingredients where id_ingredients = ?");
 		ps.setInt(1, obj.getId());
 		ResultSet rs = ps.executeQuery();
 		

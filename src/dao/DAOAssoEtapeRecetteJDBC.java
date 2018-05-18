@@ -19,7 +19,7 @@ public class DAOAssoEtapeRecetteJDBC implements DAOAssoEtapeRecette {
 	private Connection connect() throws SQLException {
 		Properties pt = new Properties();
 		pt.setProperty("user", "root");
-		pt.setProperty("password", "");
+		pt.setProperty("password", "ajcformation");
 		pt.setProperty("useSSL", "false");
 		pt.setProperty("autoReconnect", "true");
 		
@@ -112,7 +112,7 @@ public class DAOAssoEtapeRecetteJDBC implements DAOAssoEtapeRecette {
 		
 		Connection conn = this.connect();
 		
-		PreparedStatement ps = conn.prepareStatement("select * from asso_ingredients_recette where id_recette = ?");
+		PreparedStatement ps = conn.prepareStatement("select * from asso_etapes_recettes where id_recette = ?");
 		ps.setInt(1, idRecette);
 		ArrayList <AssoEtapeRecette> listeAssoEtapeRecette = new ArrayList <AssoEtapeRecette>();
 		ResultSet rs = ps.executeQuery();
